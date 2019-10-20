@@ -1,0 +1,42 @@
+# Heroes v1 deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heroes-v1
+  labels:
+    app: heroes
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: heroes
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: heroes
+        version: v1
+    spec:
+      containers:
+        - name: heroes
+          image: hero-service:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+
+# Heroes Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: heroes
+  labels:
+    app: heroes
+    service: heroes
+spec:
+  ports:
+    - port: 3000
+      name: http
+  selector:
+    app: heroes

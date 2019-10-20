@@ -1,0 +1,14 @@
+{
+    "name": "villain-service",
+    "version": "1.0.0",
+    "description": "Villain Service",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "ksivamuthu",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
