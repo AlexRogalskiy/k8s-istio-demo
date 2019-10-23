@@ -7,6 +7,7 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 
 const app = express();
+app.use(express.json());
 
 app.get('/version', (req, res) => {
     res.send('Hero service - v1');
@@ -18,8 +19,8 @@ app.get('/heroes', async (req, res) => {
 });
 
 app.post('/fightThreat', async (req, res) => {
-    const hero = req.body['heroId'];
-    const threat = req.body['threatId'];
+    const hero = req.body.heroId;
+    const threat = req.body.threatId;
     const result = await heroService.fightThreat(hero, threat);
     res.send(result);
 });

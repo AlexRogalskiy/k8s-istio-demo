@@ -1,53 +1,44 @@
+const config = require('./config');
+const axios = require('axios').default;
+
 async function getHeroes() {
     return [
         {
             id: 1,
-            type: 'spider-dog',
-            displayName: 'Cooper',
-            powers: [1, 4],
-            img: 'cooper.jpg',
-            busy: false
-        },
-        {
-            id: 2,
-            type: 'flying-dogs',
-            displayName: 'Jack & Buddy',
-            powers: [2, 5],
-            img: 'jack_buddy.jpg',
-            busy: false
-        },
-        {
-            id: 3,
-            type: 'dark-light-side',
-            displayName: 'Max & Charlie',
-            powers: [3, 2],
-            img: 'max_charlie.jpg',
-            busy: false
-        },
-        {
-            id: 4,
-            type: 'captain-dog',
-            displayName: 'Rocky',
-            powers: [1, 5],
-            img: 'rocky.jpg',
-            busy: false
+            name: 'Cooper',
+            powers: [1, 4]
         }
     ];
 }
 
-async function fightThreat(heroId, threatId, heroPowers, powersRequired) {
-    return {
-        threatId: threat,
-        heroId: hero,
-        success: heroPowers.length >= powersRequired
-    };
+async function getHero() {
+    return (await getHeroes())[0];
 }
 
-async function getPowers() {
-    return ["Flying", "Teleporting"];
+async function fightThreat(heroId, threatId) {
+    const response = await axios.get(`${config.THREAT_SERVICE}/threats/${threatId}`);
+    const threat = response.data;
+
+    const hero = await getHero();
+    let success = false;
+
+    console.log(hero);
+    console.log(threat);
+
+    if (hero.powers.length >= threat.powersRequired.length) {
+        await axios.delete(`${config.THREAT_SERVICE}/threats/${threatId}`);
+        success = true;
+    }
+
+    return {
+        threatId,
+        heroId,
+        success
+    };
 }
 
 module.exports = {
     getHeroes: getHeroes,
+    getHero: getHero,
     fightThreat: fightThreat
 };

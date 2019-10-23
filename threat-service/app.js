@@ -17,13 +17,18 @@ app.get('/threats', async (req, res) => {
     return res.send(data);
 });
 
+app.get('/threats/:threatId', async (req, res) => {
+    const data = await threatService.getThreat(req.params.threatId);
+    return res.send(data);
+});
+
 app.post('/threats', async (req, res) => {
     const data = await threatService.createThreat(req.body);
     return res.status(201).end();
 });
 
-app.delete('/threats', async (req, res) => {
-    await threatService.deleteThreat(req.body.threatId, req.body.powers);
+app.delete('/threats/:threatId', async (req, res) => {
+    await threatService.deleteThreat(req.params.threatId);
     return res.status(202).end();
 });
 

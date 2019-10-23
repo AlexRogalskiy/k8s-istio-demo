@@ -1,4 +1,4 @@
-const config = require('./config').default;
+const config = require('./config');
 const axios = require('axios');
 
 let _villains = [];
