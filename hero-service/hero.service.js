@@ -35,7 +35,7 @@ async function getHeroes() {
     ];
 }
 
-async function fightThreat(hero, threat, heroPowers, powersRequired) {
+async function fightThreat(heroId, threatId, heroPowers, powersRequired) {
     return {
         threatId: threat,
         heroId: hero,
@@ -49,6 +49,5 @@ async function getPowers() {
 
 module.exports = {
     getHeroes: getHeroes,
-    getPowers: getPowers,
     fightThreat: fightThreat
 };

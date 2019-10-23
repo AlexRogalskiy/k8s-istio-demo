@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const threatService = require('./threats');
+const threatService = require('./threat.service');
 const PORT = 3000;
 const HOST = '0.0.0.0';
 

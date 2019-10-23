@@ -21,7 +21,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /heroes/
+            prefix: /hero-service/
       rewrite:
         uri: /
       route:

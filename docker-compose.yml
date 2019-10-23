@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  hero-service:
+    image: hero-service:v1.0.0
+    build:
+      context: ./hero-service
+  threat-service:
+    image: threat-service:v1.0.0
+    build:
+      context: ./threat-service
+  villain-service:
+    image: villain-service:v1.0.0
+    build:
+      context: ./villain-service

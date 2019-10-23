@@ -64,7 +64,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /threats/
+            prefix: /threat-service/
       rewrite:
         uri: /
       route:
