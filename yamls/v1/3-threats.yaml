@@ -1,0 +1,74 @@
+# threats v1 deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: threats-v1
+  labels:
+    app: threats
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: threats
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: threats
+        version: v1
+    spec:
+      containers:
+        - name: threats
+          image: threat-service:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+
+# threats Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: threats
+  labels:
+    app: threats
+    service: threats
+spec:
+  ports:
+    - port: 3000
+      name: http
+  selector:
+    app: threats
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: threats
+spec:
+  host: threats
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: threats-vtl-svc
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /threats/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: threats.default.svc.cluster.local
+            port:
+              number: 3000

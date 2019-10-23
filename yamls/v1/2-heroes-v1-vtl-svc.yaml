@@ -19,7 +19,12 @@ spec:
   gateways:
     - istio-gateway
   http:
-    - route:
+    - match:
+        - uri:
+            prefix: /heroes/
+      rewrite:
+        uri: /
+      route:
         - destination:
             host: heroes.default.svc.cluster.local
             port:
