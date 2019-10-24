@@ -1,4 +1,4 @@
-# Heroes v1 deployment
+# Heroes v2 deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -39,28 +39,3 @@ spec:
     - name: v2
       labels:
         version: v2
-
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: heroes-vtl-svc
-spec:
-  hosts:
-    - "*"
-  gateways:
-    - istio-gateway
-  http:
-    - route:
-        - destination:
-            host: heroes
-            subset: v1
-            port:
-              number: 3000
-          weight: 90
-        - destination:
-            host: heroes
-            subset: v2
-            port:
-              number: 3000
-          weight: 10

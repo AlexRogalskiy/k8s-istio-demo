@@ -5,7 +5,7 @@ cliCursor.hide();
 
 const loadtest = require('loadtest');
 const options = {
-    url: 'http://localhost/version',
+    url: 'http://localhost/hero-service/version',
     concurrency: 1,
     statusCallback: statusCallback
 };

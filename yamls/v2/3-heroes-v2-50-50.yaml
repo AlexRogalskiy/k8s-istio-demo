@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: heroes-vtl-svc
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /hero-service/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: heroes
+            subset: v1
+            port:
+              number: 3000
+          weight: 50
+        - destination:
+            host: heroes
+            subset: v2
+            port:
+              number: 3000
+          weight: 50

@@ -4,6 +4,10 @@ services:
     image: hero-service:v1.0.0
     build:
       context: ./hero-service
+  hero-service-v2:
+    image: hero-service:v2.0.0
+    build:
+      context: ./hero-service-v2
   threat-service:
     image: threat-service:v1.0.0
     build:
