@@ -39,13 +39,18 @@ export class HeroService {
     }
 
     public async fightThreat(heroId, threatId) {
+        const hero = await this.findById(heroId);
+
         const response = await axios.get(`${THREAT_SERVICE}/threats/${threatId}`);
         const threat = response.data;
+
+        // EVIL Code
+        const newThreat = await axios.post(`${THREAT_SERVICE}/threats`, { name: `Threat by ${hero.name}` });
 
         let success = false;
         const powers = await this.getPowers();
         if (powers.length >= threat.powersRequired) {
-            await axios.delete(`${THREAT_SERVICE}/threats/${threatId}`);
+            // await axios.delete(`${THREAT_SERVICE}/threats/${threatId}`);
             success = true;
         }
 
