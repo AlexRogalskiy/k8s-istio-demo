@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+  <span>Istio Microservices Demo</span>
+</mat-toolbar>
+
+<div class="main-container">
+  <div class="characters-container">
+    <mat-card class="char-card hero-card">
+      <mat-card-header>
+        <mat-card-title>Hero - {{hero.name}}</mat-card-title>
+        <mat-card-subtitle>{{heroSvc.version}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="fightThreat()" mat-button>Fight Threat</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="char-card villain-card">
+      <mat-card-header>
+        <mat-card-title>Villain - {{villain.name}}</mat-card-title>
+        <mat-card-subtitle>{{villainSvc.version}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="doEvil()" mat-button>Do Evil</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="threats-container">
+    <table mat-table [dataSource]="threats" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let threat"> {{threat.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let threat"> {{threat.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="powersRequired">
+        <th mat-header-cell *matHeaderCellDef> Powers Required </th>
+        <td mat-cell *matCellDef="let threat"> {{threat.powersRequired}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

@@ -43,7 +43,7 @@ export class HeroService {
         const threat = response.data;
 
         let success = false;
-        const powers = await this.getPowers();
+        const powers = await this.getPowers(threat.powersRequired);
         if (powers.length >= threat.powersRequired) {
             await axios.delete(`${THREAT_SERVICE}/threats/${threatId}`);
             success = true;
@@ -56,7 +56,7 @@ export class HeroService {
         };
     }
 
-    public async getPowers() {
-        return ['Flying'];
+    public async getPowers(powersRequired: number) {
+        return Array.from(Array(powersRequired).keys());
     }
 }

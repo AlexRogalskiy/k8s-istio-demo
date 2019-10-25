@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Villain } from './villain.model';
+import axios from 'axios';
+import { THREAT_SERVICE } from '../config';
 
 @Injectable()
 export class VillainService {
@@ -34,5 +36,10 @@ export class VillainService {
         if (existing) {
             await this.villainRepo.remove(existing);
         }
+    }
+
+    public async doEvil() {
+        const response = await axios.post(`${THREAT_SERVICE}/threats`, { name: 'Threat', powersRequired: Math.floor(Math.random() * 11) });
+        return response.data;
     }
 }

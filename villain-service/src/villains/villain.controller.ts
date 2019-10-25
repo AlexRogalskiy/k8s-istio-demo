@@ -31,4 +31,9 @@ export class VillainController {
     async remove(@Param('id') id: number) {
         return this.villainservice.delete(id);
     }
+
+    @Post('/doEvil')
+    async doEvil() {
+        this.villainservice.doEvil();
+    }
 }

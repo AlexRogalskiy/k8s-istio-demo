@@ -3,7 +3,10 @@ import { Controller, Get } from '@nestjs/common';
 @Controller()
 export class AppController {
   @Get('/version')
-  version(): string {
-    return 'Hero service - v2';
+  version() {
+    return {
+      name: 'HeroService',
+      version: 'v2',
+    };
   }
 }

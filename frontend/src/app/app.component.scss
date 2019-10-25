@@ -1,0 +1,67 @@
+.characters-container {
+    display: inline-block;
+    margin: 20px;
+}
+
+.char-card {
+    color: white;
+    margin: 20px;
+    width: 500px;
+
+    .mat-card-subtitle {
+        color: white !important;
+        font-size: 1.25em;
+    }
+
+    .mat-button {
+        border: 2px solid white;
+    }
+}
+
+.hero-card {
+    background: darkblue;
+}
+
+.villain-card {
+    background: purple;
+}
+
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    width: 100%;
+}
+
+.mat-row {
+    width: 100%;
+}
+
+.mat-column-id {
+    flex: 0 0 25% !important;
+    min-width: 104px !important;
+}
+.mat-column-name {
+    flex: 0 0 25% !important;
+    min-width: 104px !important;
+}
+
+.mat-column-powersRequired {
+    flex: 0 0 25% !important;
+    min-width: 104px !important;
+}
+
+.main-container {
+    display: inline-block;
+}
+
+.characters-container {
+    float: left;
+}
+
+.threats-container {
+    float: right;
+    margin: 50px;
+}

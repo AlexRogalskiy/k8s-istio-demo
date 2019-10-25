@@ -4,5 +4,5 @@ import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
 export class Threat {
     @PrimaryGeneratedColumn() public readonly id: number;
     @Column({ nullable: false }) public readonly name: string;
-    @Column({ nullable: false }) public readonly saying: string;
+    @Column({ nullable: false }) public readonly powersRequired: number;
 }
