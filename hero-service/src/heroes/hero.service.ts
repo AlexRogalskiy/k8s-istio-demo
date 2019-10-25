@@ -57,6 +57,6 @@ export class HeroService {
     }
 
     public async getPowers() {
-        return ['Flying'];
+        return ['Flying', 'Sitting Idle', 'Teleporting', 'Pending spoons'];
     }
 }

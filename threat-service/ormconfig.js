@@ -6,5 +6,5 @@ module.exports = {
     "password": "password",
     "entities": ["dist/**/**.model{.ts,.js}"],
     "database": "k8s-istio",
-    "synchronize": true
+    "synchronize": false
 }

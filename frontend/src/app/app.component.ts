@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { random } from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,7 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private readonly service: AppService) {
+  constructor(private readonly service: AppService, private _snackBar: MatSnackBar) {
   }
 
   displayedColumns = ['id', 'name', 'powersRequired'];
@@ -52,8 +54,16 @@ export class AppComponent implements OnInit {
 
   fightThreat() {
     if (this.threats && this.threats.length > 0) {
-      this.service.fightThreat(this.hero.id, this.threats[0].id).subscribe(() => {
-        this.getThreats();
+      const randomThreat = this.threats[random(0, this.threats.length - 1)];
+      this.service.fightThreat(this.hero.id, randomThreat.id).subscribe((data) => {
+        if (!(data as any).success) {
+          this._snackBar.open('Hero failed with fighting threats', 'Dismiss', { duration: 3000 });
+        } else {
+          this._snackBar.open('Hero removed threat successfully', 'Dismiss', { duration: 3000 });
+          this.getThreats();
+        }
+      }, (err) => {
+        this._snackBar.open('Hero Service Failed - Couldn\'t reach threat service', 'Dismiss', { duration: 3000 });
       });
     }
   }

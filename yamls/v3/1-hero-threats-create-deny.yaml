@@ -21,7 +21,7 @@ kind: rule
 metadata:
   name: denyherocreatethreat
 spec:
-  match: destination.labels["app"] == "threats" && source.labels["app"]=="heroes"
+  match: destination.labels["app"] == "threats" && source.labels["app"]=="heroes" && source.labels["version"] == "v3"
   actions:
     - handler: denyherocreatethreathandler
       instances: [denyherocreatethreatrequest]
