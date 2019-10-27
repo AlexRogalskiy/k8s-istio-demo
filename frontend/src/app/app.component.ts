@@ -60,8 +60,9 @@ export class AppComponent implements OnInit {
           this._snackBar.open('Hero failed with fighting threats', 'Dismiss', { duration: 3000 });
         } else {
           this._snackBar.open('Hero removed threat successfully', 'Dismiss', { duration: 3000 });
-          this.getThreats();
         }
+
+        this.getThreats();
       }, (err) => {
         this._snackBar.open('Hero Service Failed - Couldn\'t reach threat service', 'Dismiss', { duration: 3000 });
       });

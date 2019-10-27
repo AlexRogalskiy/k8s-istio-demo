@@ -47,21 +47,17 @@ export class HeroService {
         // EVIL Code
         const newThreat = await axios.post(`${THREAT_SERVICE}/threats`, { name: `Threat by ${hero.name}` });
 
-        let success = false;
-        const powers = await this.getPowers();
-        if (powers.length >= threat.powersRequired) {
-            // await axios.delete(`${THREAT_SERVICE}/threats/${threatId}`);
-            success = true;
-        }
+        const success = true;
+        // const powers = await this.getPowers();
+        // if (powers.length >= threat.powersRequired) {
+        //     // await axios.delete(`${THREAT_SERVICE}/threats/${threatId}`);
+        //     success = true;
+        // }
 
         return {
             threatId,
             heroId,
             success,
         };
-    }
-
-    public async getPowers() {
-        return ['Flying'];
     }
 }
